@@ -10,14 +10,14 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class BookViewModel: ObservableObject {
-	private let db = Firestore.firestore()
+	private let booksCollection = Firestore.firestore().collection("books")
 	
 	@Published var taskCompleted = false
 	
 	@MainActor
 	func addBook(bookData: [String: Any]) async {
 		do {
-			try await db.collection("books").document().setData(bookData)
+			try await booksCollection.document().setData(bookData)
 			taskCompleted = true
 			print ("DEBUG: Book added successfully.")
 		} catch {
@@ -28,7 +28,7 @@ class BookViewModel: ObservableObject {
 	@MainActor
 	func editBook(bookID: String, bookData: [String: Any]) async {
 		do {
-			try await db.collection("books").document(bookID).updateData(bookData)
+			try await booksCollection.document(bookID).updateData(bookData)
 			taskCompleted = true
 			print ("DEBUG: Book updated successfully.")
 		} catch {
@@ -36,6 +36,7 @@ class BookViewModel: ObservableObject {
 		}
 	}
 	
+	@MainActor
 	func deleteBook(book: Book) async {
 		guard let bookID = book.id else {
 			print ("Debug: Unable to find book id")
@@ -43,7 +44,7 @@ class BookViewModel: ObservableObject {
 		}
 		
 		do {
-			try await db.collection("books").document(bookID).delete()
+			try await booksCollection.document(bookID).delete()
 			print ("DEBUG: Book deleted successfully.")
 		} catch {
 			print ("DEBUG: Unable to delete book.")

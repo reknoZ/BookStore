@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  BookList.swift
 //  BookStore
 //
 //  Created by Zicount on 09.02.23.
@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct ContentView: View {
+struct BookList: View {
 	@State private var showingEditBookView = false
 	@EnvironmentObject var bookVM: BookViewModel
 	
@@ -52,10 +52,10 @@ struct ContentView: View {
 						showingEditBookView = true
 					} label: {
 						Image(systemName: "plus")
-							.padding()
-							.background(Color("bookColor"))
-							.foregroundColor(.white)
-							.clipShape(Circle())
+//							.padding()
+//							.background(Color("bookColor"))
+//							.foregroundColor(.white)
+//							.clipShape(Circle())
 					}
 				}
 			}
@@ -75,8 +75,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-		NavigationView {
-			ContentView()
-	    }
+		BookList()
 	}
 }

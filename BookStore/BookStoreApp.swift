@@ -17,7 +17,7 @@ struct BookStoreApp: App {
 
     var body: some Scene {
         WindowGroup {
-			ContentView()
+			BookList()
 				.environmentObject(BookViewModel())
         }
     }
