@@ -18,8 +18,9 @@ struct BookDetailView: View {
 			VStack {
 				Image ("friday")
 					.resizable()
+					.scaledToFit()
 					.frame(maxWidth: .infinity)
-					.frame(height: 300)
+					.frame(height: 400)
 				
 				VStack (alignment: .leading, spacing: 20) {
 					BookRow(label: "Title", value: book.title)
@@ -67,6 +68,6 @@ struct BookRow: View {
 
 struct BookDetailView_Previews: PreviewProvider {
     static var previews: some View {
-		BookDetailView(book: Book(created: Timestamp(date: Date()), title: "", author: "", price: 9))
+		BookDetailView(book: Book(created: Timestamp(date: Date()), title: "Friday", author: "Robert A. Heinlein", price: 19))
     }
 }
